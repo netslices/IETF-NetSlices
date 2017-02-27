@@ -1,0 +1,15 @@
+NetSlices IETF 98: side meeting: Call for Contributions
+
+Hello all,
+We are planning to have another side-meeting to continue face to face
+discussions on the topic and are in the process of setting up agenda and
+inviting contributions from the community.
+Please send your contributions (such as usecases) and suggestions for discussion topics.
+
+In order to collaborate, we have setup github repository. Feel free to use this
+for reviews, document update and uploading your contributions.
+
+-- Main Repository
+https://github.com/netslices/IETF-NetSlices
+-- Folder for IETF98 side meeting
+https://github.com/netslices/IETF-NetSlices/IETF98_Sidemeeting02
