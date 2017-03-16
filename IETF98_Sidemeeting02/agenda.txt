@@ -1,0 +1,63 @@
+Draft Agenda of Network Slicing side meeting at IETF98
+
+- Location: Room Vevey 1/2,
+- Date/Time: 2017.03.27, 18:15-21:15
+
+Scope of the NS meeting:
+Present and discuss use cases, architecture and identify technical problems to be address by future work at IETF. The place of such work either as part of re-scoping some exiting WG or a new dedicated WG is not part of this meeting.
+
+1. Agenda bash
+Meeting Organisers: Alex Galis – UCL, J. Dong – Huawei, K. Makhijani-Huawei, Stewart Bryant – Huawei
+Chairs of the meeting Stewart Bryant – Huawei, Alex Galis - UCL
+  Duration: 1-3 mins
+
+2. Introductory Document and Revised Problem Statement walk through
+  Presenter: Alex Galis - UCL/Stewart - Huawei
+  Duration:  10 mins + 5 mins Q&A
+  https://tools.ietf.org/html/draft-gdmb-netslices-intro-and-ps-02
+
+I. Towards NS Use Cases
+
+3. 5G Network Slicing - 3GPP Use Case background
+  Presenter: Xavier DeFoy -InterDigital
+  Duration:  10 mins + 5 mins Q&A
+
+4. Generalized Market/Service Verticals with Network Slicing Use cases
+    Presenter: K. Makhijani- Huawei/J. Dongjie - Huawei
+  Duration:  10 mins + 5 mins Q&A
+    https://tools.ietf.org/html/draft-qin-netslices-use-cases-00
+
+5. An ICN service delivery prototype using slices.
+    Presenter: Ravi Ravindran - Huawei
+    Duration: 10 mins + 5 mins Q&A
+
+**II. Towards Operators Ecosystem Viewpoints**
+
+6. Network Slicing architecture
+    Presenter: Liang Geng – China Mobile
+    Duration: 10 mins + 5 mins Q&A
+
+  https://datatracker.ietf.org/doc/draft-geng-netslices-architecture/
+
+7. network slicing, different views and implications
+Presenter: Pedro Martinez-Julia - NICT / NTT - Japan
+    Duration: 10 mins + 5 mins Q&A
+
+
+III. Towards Manufactures Viewpoints
+
+8. How to slice Network Slicing for the IETF
+    Presenter: H. Flinck - Nokia
+    Duration:  10 mins + 5 mins Q&A
+
+9. ACTN Virtual Network operation (with Network Slicing Insights)
+    Presenter: G. Grammel - Juniper/L. Young - Huawei
+    Duration: 10 mins + 5 mins Q&A
+
+https://datatracker.ietf.org/doc/draft-lee-teas-actn-vn-yang/?include_text=1
+
+10. Automatic Network Slicing Management for Transport Network
+    Presenter: Qiang Li - Huawei
+    Duration: 10 mins + 5 mins Q&A
+
+11. Final Q&A & Conclusions: 30 mins
