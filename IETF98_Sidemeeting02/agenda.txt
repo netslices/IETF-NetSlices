@@ -31,7 +31,7 @@ I. Towards NS Use Cases
     Presenter: Ravi Ravindran - Huawei
     Duration: 10 mins + 5 mins Q&A
 
-**II. Towards Operators Ecosystem Viewpoints**
+II. Towards Operators Ecosystem Viewpoints
 
 6. Network Slicing architecture
     Presenter: Liang Geng – China Mobile
