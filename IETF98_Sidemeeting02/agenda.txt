@@ -21,6 +21,7 @@ I. Towards NS Use Cases
 3. 5G Network Slicing - 3GPP Use Case background
   Presenter: Xavier DeFoy -InterDigital
   Duration:  10 mins + 5 mins Q&A
+  https://datatracker.ietf.org/doc/html/draft-defoy-netslices-3gpp-network-slicing
 
 4. Generalized Market/Service Verticals with Network Slicing Use cases
     Presenter: K. Makhijani- Huawei/J. Dongjie - Huawei
