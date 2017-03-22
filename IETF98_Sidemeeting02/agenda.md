@@ -22,7 +22,7 @@ Present and discuss use cases, architecture and identify technical problems to b
      Presenter: Xavier DeFoy -InterDigital
      Duration:  10 mins + 5 mins Q&A
      Abstract: This presentation describes work conducted at the 3GPP standard organization on 5G Network Slicing, and attempts to derive high level requirements and context information for future Network Slicing work in IETF.
-     https://tools.ietf.org/html/draft-qin-netslices-use-cases-00
+     https://datatracker.ietf.org/doc/html/draft-defoy-netslices-3gpp-network-slicing
 
 ### Presentation 04: Generalized Market/Service Verticals with Network Slicing Use cases
     Presenter: K. Makhijani- Huawei/J. Dongjie - Huawei
