@@ -40,9 +40,10 @@ II. Towards Operators Ecosystem Viewpoints
 
   https://datatracker.ietf.org/doc/draft-geng-netslices-architecture/
 
-7. network slicing, different views and implications
-Presenter: Pedro Martinez-Julia - NICT / NTT - Japan
+7. Network Slicing: Technical Viewpoints and Functional Roles
+    Presenter: Pedro Martinez-Julia - NICT (Japan)
     Duration: 10 mins + 5 mins Q&A
+    https://github.com/netslices/IETF-NetSlices/raw/master/IETF98_Sidemeeting02/ietf98-netslices-pedro-nict.pdf
 
 
 III. Towards Manufactures Viewpoints
