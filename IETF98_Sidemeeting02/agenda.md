@@ -45,10 +45,10 @@ Present and discuss use cases, architecture and identify technical problems to b
     Abstract: This document defines the overall architecture of network slicing. Base on the general architecture, basic concepts of network slicing and examples of network slicing instances are introduced for clarification purposes.  Some architectural considerations about the data plane, control plane, management and orchestration of network slicing are described to give a general view of network slicing implementation principles.  This also helps to identify the gaps in existing IETF works relating to network slicing.
     https://datatracker.ietf.org/doc/draft-geng-netslices-architecture/ 
 
-### Presentation 07: network slicing, different views and implications
-    Presenter: Pedro Martinez-Julia - NICT / NTT - Japan
+### Presentation 07: Network Slicing: Technical Viewpoints and Functional Roles
+    Presenter: Pedro Martinez-Julia - NICT - Japan
     Duration: 10 mins + 5 mins Q&A
-    Abstract: Coming soon
+    Abstract: The limitations on internal and external flexibility of network resources and the benefits of network service composability are key aspects to promote network slicing and its related technologies. This presentation discusses a set of basic requirements that should be added to the reference architecture for network slicing, supported by two technical points of view of NS and the minimum functional roles involves in NS and their interactions. It also illustrates a potential use case, an envisioned advanced scenario, and required interfaces.
 
 
 **III. Towards Manufactures Viewpoints**
