@@ -46,7 +46,7 @@ Present and discuss use cases, architecture and identify technical problems to b
     https://datatracker.ietf.org/doc/draft-geng-netslices-architecture/ 
 
 ### Presentation 07: Network Slicing: Technical Viewpoints and Functional Roles
-    Presenter: Pedro Martinez-Julia - NICT - Japan
+    Presenter: Pedro Martinez-Julia - NICT (Japan)
     Duration: 10 mins + 5 mins Q&A
     Abstract: The limitations on internal and external flexibility of network resources and the benefits of network service composability are key aspects to promote network slicing and its related technologies. This presentation discusses a set of basic requirements that should be added to the reference architecture for network slicing, supported by two technical points of view of NS and the minimum functional roles involves in NS and their interactions. It also illustrates a potential use case, an envisioned advanced scenario, and required interfaces.
 
