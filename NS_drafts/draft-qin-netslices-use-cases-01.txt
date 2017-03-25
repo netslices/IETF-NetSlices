@@ -1,0 +1,784 @@
+
+
+
+
+none                                                              J. Qin
+Internet-Draft                                              K. Makhijani
+Intended status: Informational                                   J. Dong
+Expires: September 25, 2017                                     L. Qiang
+                                                                 S. Peng
+                                                     Huawei Technologies
+                                                          March 24, 2017
+
+
+Network Slicing Use Cases: Network Customization for different services
+              draft-qin-netslices-usecase-customization-01
+
+Abstract
+
+   Network Slicing paradigm enables creation of partitioned network
+   infrastructure to provide isolated network platforms for various
+   service verticals.  The motivation behind Network Slicing (NS) is to
+   allow deployment of new services without causing or experiencing any
+   disruption due to other already running or deployed services in the
+   network.  The purpose of this document is to focus on use cases that
+   benefit from the usefulness of network slicing.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on September 25, 2017.
+
+Copyright Notice
+
+   Copyright (c) 2017 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (http://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+
+
+
+Qin, et al.            Expires September 25, 2017               [Page 1]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+     1.1.  Requirements Language . . . . . . . . . . . . . . . . . .   3
+     1.2.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   4
+   2.  Network Customization for diverse services  . . . . . . . . .   4
+     2.1.  Overview  . . . . . . . . . . . . . . . . . . . . . . . .   4
+     2.2.  Strict Resource Demand Concept  . . . . . . . . . . . . .   5
+     2.3.  Network Customization Concept . . . . . . . . . . . . . .   5
+     2.4.  Scope of use cases  . . . . . . . . . . . . . . . . . . .   6
+   3.  NS Use Cases of Strict Resource Demands . . . . . . . . . . .   6
+     3.1.  eMBB Type of NS Use Cases . . . . . . . . . . . . . . . .   6
+       3.1.1.  HD Video  . . . . . . . . . . . . . . . . . . . . . .   6
+       3.1.2.  Virtual Reality (VR)/Augmented Reality (AR) . . . . .   7
+       3.1.3.  Realizing eMBB type Slices  . . . . . . . . . . . . .   7
+     3.2.  uRLLC Type of NS Use Cases  . . . . . . . . . . . . . . .   7
+       3.2.1.  Industrial Operation and Inspection . . . . . . . . .   7
+       3.2.2.  Remote Surgery  . . . . . . . . . . . . . . . . . . .   8
+       3.2.3.  Realizing uRLLC type Slices . . . . . . . . . . . . .   8
+       3.2.4.  Vehicle-to-everything (V2X) . . . . . . . . . . . . .   8
+     3.3.  mMTC Type NS Use Cases  . . . . . . . . . . . . . . . . .   9
+       3.3.1.  Smart Cities  . . . . . . . . . . . . . . . . . . . .   9
+       3.3.2.  Health Monitoring . . . . . . . . . . . . . . . . . .   9
+       3.3.3.  Realizing mMTC Type Slices  . . . . . . . . . . . . .   9
+   4.  NS Use Cases of Other (Over-The-Top services) type  . . . . .  10
+     4.1.  Realizing OTT Service Slices  . . . . . . . . . . . . . .  10
+   5.  NS Use cases with Mixed Requirements  . . . . . . . . . . . .  10
+   6.  Generic Network Slicing Use Case Analysis . . . . . . . . . .  11
+   7.  Conclusion  . . . . . . . . . . . . . . . . . . . . . . . . .  11
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  12
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  12
+   10. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  12
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  12
+     11.1.  Normative References . . . . . . . . . . . . . . . . . .  12
+     11.2.  Informative References . . . . . . . . . . . . . . . . .  13
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  13
+
+1.  Introduction
+
+   Network Slicing (NS) is a widely discussed paradigm and is a
+   mandatory requirement in 5G to meet the diverse service requirements
+   in different 5G service scenarios.  NS refers to the managed
+
+
+
+Qin, et al.            Expires September 25, 2017               [Page 2]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+   partitions of physical and/or virtual network resources, network
+   physical/virtual and service functions [RFC7665] that can act as an
+   independent instance of a connectivity network and/or as a network
+   cloud [I-D.gdmb-netslices-intro-and-ps].  In 3rd Generation
+   Partnership Project (3GPP) [TR23.799] defines "Network slicing
+   enables the operator to create networks customized to provide
+   optimized solutions for different market scenarios which demands
+   diverse requirements, e.g. in the areas of functionality, performance
+   and isolation".  Draft [I-D.gdmb-netslices-intro-and-ps] defines
+   network slicing in a broad context and suggests related problems and
+   work areas.  Other organizations like Next Generation Mobile Networks
+   (NGMN) [Network-Slicing-Concept] and ITU-T FG IMT-2020
+   [FG-IMT2020-Gaps] also present their separate definitions of NS.
+
+   To maximize resource utilization and minimize infrastructure cost,
+   services will need to be deployed simultaneously, next to each other
+   over a shared network as against the traditional monolithic model.
+   Service operators can utilize or benefit from Network Slicing through
+   multi-tenancy, enabling different customized infrastructures for
+   different group of services across different network segments and
+   operating them independently.  Moreover, NS is also able to guarantee
+   the isolation between different network slices.  The operation of the
+   data packets traversing one network slice must not adversely affect
+   the service operation in other network slices sharing the same
+   underlying packet network.
+
+   This document describes use cases, where service operators can
+   utilize or benefit from Network Slicing through multi-tenancy,
+   enabling different customized infrastructures for different group of
+   services across different network segments and operating them
+   independently.  Although 5G will drive NS based deployments, the
+   scope of the document is not limited to 5G; it covers example
+   scenarios specified from 5G vision as well as generalized scenarios
+   that can be applied to existing infrastructures.
+
+1.1.  Requirements Language
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "*SHALL NOT*",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in RFC 2119.
+
+   Additionally, the key words "*MIGHT*", "*COULD*", "*MAY WISH TO*",
+   "*WOULD PROBABLY*", "*SHOULD CONSIDER*", and "*MUST (BUT WE KNOW YOU
+   WON'T)*" in this document are to interpreted as described in RFC
+   6919.
+
+
+
+
+
+
+Qin, et al.            Expires September 25, 2017               [Page 3]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+1.2.  Terminology
+
+   o  V2X (Vehicle-to-everything): Is a communication of information
+      from a vehicle to any other entity that may be a user end-device,
+      network element or application end point.
+
+   o  ITS (Intelligent Transportation Systems): Considered an aspect of
+      Internet of Things creates a transport network.  The network
+      provides services relating to transport and traffic management
+      systems through flow of information between sensors, smart devices
+      and humans.
+
+   o  Over-the-top (OTT): A service, e.g., content delivery using a CDN,
+      operated by a different operator than the NSP to which the users
+      of that service are attached.
+
+   o  Industry vertical: A collection of services or tools specific to
+      an industry, trade or market sector.  Also referred to as Service
+      Verticals in this document.
+
+2.  Network Customization for diverse services
+
+2.1.  Overview
+
+   [Note: To discuss diverse set of service attributes]
+
+   Often services specify a broader resource requirements to perform
+   normally whereas the underlying infrastructure is generally best-
+   effort.  Traditionally, basic service guarantees are associated with
+   resource attributes such as:
+
+   o  Latency
+
+   o  Bandwidth/Burst or other bit rates.
+
+   o  Security
+
+   In addition, other attributes as mentioned below are embedded into
+   the infrastructure to improve over all quality of experience
+
+   o  Redundancy
+
+   o  Reliability
+
+   o  Authentication
+
+   More recently, other service attributes have become significant such
+   as
+
+
+
+Qin, et al.            Expires September 25, 2017               [Page 4]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+   o  Continuity during mobility
+
+   o  Purpose-built network functions.
+
+   o  Service placement
+
+   It should be possible for the providers of any service to
+   continuously evolve, adapt, and differentiate themselves through
+   purpose-built infrastructures with minimal impact on network
+   deployment and operations.  The motivation behind 5G Network slicing
+   paradigm is exactly that.  By creating logically partitioned network
+   infrastructures, isolated platforms for various industry verticals
+   can be provided.  NS is envisioned to enable new service deployments
+   without having to build new network infrastructures or causing
+   disruptions to other already deployed services in the network.  In
+   regards to NS, there are two primary characteristics, a) Strict
+   demand for network resource, b) Network Customization.
+
+2.2.  Strict Resource Demand Concept
+
+   Several services are sensitive to response times and/or amount of
+   bandwidth, e.g. realtime interactive multimedia, high bandwidth video
+   feed or remote access to an enterprise network.  Failure to meet
+   these criteria leads to service degradation.
+
+   Moreover, newer scenarios from different industries are evolving due
+   to these factors - a) everything connected, b) technological
+   advancements in sensors, IoT, robotics and multi-media, c)
+   innovations in social network interactions (including both human-
+   human or human-machine).  These may impose even stricter and more
+   specific set of resource and connectivity requirements on per service
+   basis.  The challenge lies in utilizing common network infrastructure
+   and judiciously allocating available infrastructure resources.
+
+2.3.  Network Customization Concept
+
+   Network slicing is enabled through customization.  Customization
+   gives control to the operator (of a slice) to create, provision,
+   change and consume network resources to suit their service demands.
+   It requires ability to decompose resources from an underlying network
+   infrastructure and logically aggregate them to tailored a part of
+   network into a slice.  These customizations are not only in the
+   context of the network characteristics but also include network
+   functions.
+
+
+
+
+
+
+
+Qin, et al.            Expires September 25, 2017               [Page 5]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+2.4.  Scope of use cases
+
+   Network slicing by itself is not a new concept nor its benefits are
+   limited to 5G.  While writing use cases following were considered -
+
+   o  A Network Slicing aware infrastructure allows operators to use
+      part of the network resources to meet stringent resource
+      requirement as in Section 2.2 or exploit dynamic customizations as
+      described in Section 2.3.  Finally, there will be scenarios that
+      require both customization and strict resource requirements.
+
+   o  The document doesn't specify whether a network slice consists of a
+      single or multiple service(s). at the simplest level one service
+      may correspond to a slice, however, it is possible that many
+      services may become part of the same slice for the purpose of
+      isolated data or context sharing.
+
+   o  Use cases below are discussed from 2 perspectives -
+
+      a  Newer scenarios: that should absolutely meet strict resource
+         requirements, as if they use a dedicated infrastructure.  The
+         example use cases are categorized further in Section 3.
+
+      b  Existing Scenarios: Several already deployed or existing
+         examples that would further benefit when deployed through
+         Network Slice paradigm are discussed in Section 4.
+
+3.  NS Use Cases of Strict Resource Demands
+
+   The International Telecommunication Union (ITU) has classified 5G
+   mobile network services into three categories: Enhanced Mobile
+   Broadband (eMBB), Ultra-reliable and Low-latency Communications
+   (uRLLC), and Massive Machine Type Communications (mMTC).  Following
+   representative use cases are divided based on these criteria.
+
+3.1.  eMBB Type of NS Use Cases
+
+   The scenarios in this section are discussed in regards to growth in
+   data rate capacity, connection density and interactive media.
+
+3.1.1.  HD Video
+
+   Person-to-person or person-to-group video communication with high
+   resolution (4K/8K) and more advanced capabilities will have a much
+   wider usage in 5G era.  In a large stadium or live event (spots/
+   concert) setting, following kind of services can be offered:
+
+   o  Watch HD playback video or instant replay.
+
+
+
+Qin, et al.            Expires September 25, 2017               [Page 6]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+   o  Stream/share live HD videos with remote friends, or photos to
+      social networks.
+
+   The connection density and date rate requirements will be high.  The
+   aim is to provide video streaming and sharing services to everyone,
+   regardless of the physical location, the device being used, and the
+   network connection [NGMN-White-Paper].
+
+3.1.2.  Virtual Reality (VR)/Augmented Reality (AR)
+
+   Virtual Reality(VR)/Augmented Reality(AR) is another demanding use
+   case of eMBB services.  VR/AR video streaming will have far more
+   stringent network resource requirements than on-demand video content.
+   It may require it's own dedicated infrastructure with enhanced
+   network protocols.  The adoption of bandwidth-intensive VR/AR
+   immersive services will have a direct impact on network capacity.  At
+   present 360 degree videos are mostly low resolution, requiring ~25
+   Mbps network bandwidth for streaming.  360 degree video is basis of
+   AR/VR and as the display quality improves (retina resolution, 5K per
+   eye), the bandwidth required will ramp up to several Gbps for a fully
+   immersive experience.  The infrastructure required to deliver
+   immersive services will be different from traditional network.  It
+   may require several purpose-built hardware-assisted for video
+   processing inline, dedicated immersive service capacity per user and
+   perhaps an alternate transport designed specially for video services.
+
+3.1.3.  Realizing eMBB type Slices
+
+   A purpose-built Network Slice for video streaming shall ensure first
+   and foremost, that there is always sufficient network capacity
+   available for users that are not attending of the live-event (eMBB
+   slice).  That is, users not subscribed to eMBB slice dedicated for
+   the event, will not experience service degradation because available
+   bandwidth got used up by stadium attendees.
+
+   Since quality of experience is important but not critical; this slice
+   may scale out by borrowing resources on-demand from the common
+   infrastructure resource-pool and may even return dynamically to save
+   costs if the bandwidth demand is low.  As such slices of these kind
+   may be temporary and destroyed at the end of the event.
+
+3.2.  uRLLC Type of NS Use Cases
+
+3.2.1.  Industrial Operation and Inspection
+
+   In industry area, usually remote operations need the support of the
+   mobile transport networks.  Operating machinery from a control center
+   at a remote site could avoid on-site hazards relating to sites like
+
+
+
+Qin, et al.            Expires September 25, 2017               [Page 7]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+   waterworks, large process plants, mines, harbors, and chemical
+   factory.  Tele-operating heavy machinery and other equipments with
+   high accuracy in dangerous or hard to access sites requires a high-
+   quality communication link between the control-center and the
+   machines.
+
+3.2.2.  Remote Surgery
+
+   Remote surgery which enables surgeons to perform critical specialized
+   medical procedures remotely, allowing their vital expertise to be
+   applied globally.  Providing the correct control and feedback for the
+   surgeon entails very strict requirements in terms of latency,
+   reliability and security.
+
+3.2.3.  Realizing uRLLC type Slices
+
+   A Network slice dedicated for remote operations requires
+   communication characteristics of low latency and low jitter.  To
+   manipulate equipment efficiently the response time of a control
+   instruction must be as short as possible.  A typical haptic control
+   loop in a remote operation application requires latency to be below
+   10ms [Technology-Watch-Report].
+
+3.2.4.  Vehicle-to-everything (V2X)
+
+   Vehicle-to-everything (V2X) refers to an intelligent transport system
+   where all vehicles and infrastructure systems are interconnected with
+   each other [White-paper-5GAA].  The V2X features fall into several
+   categories relating to safety, navigation, infotainment, diagnostics
+   and efficiency [ITS-I].  This makes for an interesting use case for
+   network slices as each category is served through a different slice;
+   a vehicle becomes part of 3 or 4 different logical network
+   infrastructures at the same time.  For Example:
+
+   1.  A vehicle may become part of a customized slice that serves low
+       latency and zero-packet loss slice and supports a Vehicular Ad
+       Hoc Network (VANET) type protocols for vehicle to vehicle
+       communication and autonomous driving.  It may further have
+       different access selection (short-range DSRC or commercial C-V2X)
+       see [White-paper-5GAA] for details.This slice have
+       characteristics of constant, low bandwidth, ultra-low latency.
+
+   2.  A Vehicle may join an isolated slice that represents its car
+       manufacturer's network for remote diagnostics, software/firmware
+       upgrades to vehicle maybe performed.  The key characteristics for
+       this slice is to ensure security of sensors and other devices
+       through VPN style closed network.
+
+
+
+
+Qin, et al.            Expires September 25, 2017               [Page 8]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+   3.  An infotainment slice of vehicle provides broadband for in
+       vehicle entertainment, Internet access and enhanced navigation.
+
+3.3.  mMTC Type NS Use Cases
+
+3.3.1.  Smart Cities
+
+   Smart city is an integration of public infrastructures together
+   through Machine-to-Machine (M2M) communications and other Internet of
+   Things (IoT) solutions.  The common smart city services include:
+
+   o  automatic metering for gas, energy, water, etc.
+
+   o  environment monitoring for pollution, temperature, humidity, etc.
+
+   o  light management inside buildings or even the whole city,
+
+   o  traffic signal control, public safety alerting for natural
+      disasters and emergencies.
+
+   Building a smart city requires a variety of IOT networks to inter-
+   operate together, These IOT networks are run by different departments
+   with different access privileges for administration and access
+   control.  For emergency services in smart city, the communication
+   network must ensure the reliable communication.
+
+3.3.2.  Health Monitoring
+
+   E-health refers to the application that remote monitor the physical
+   conditions (e.g., heart rate, pulse, blood pressure etc.), and
+   accordingly take necessary medical measures remotely.  Often E-health
+   service could be life-critical relate its communication network must
+   be able to provide the reliable and fast but small-size of data
+   exchange.  In addition, the privacy and security of user's data must
+   be guaranteed.
+
+3.3.3.  Realizing mMTC Type Slices
+
+   mMTC involves potentially a large number of small and power-
+   constrained devices, therefore, resource allocation at scale is of
+   particular importance in mMTC type slices.  Furthermore, different
+   kind of IoT devices may exhibit quite different traffic patterns
+   e.g., uninterrupted (heart rate monitors) & periodic delay tolerant
+   (temperature sensors), delay sensitive (e.g., weather forecast &
+   disaster alerting), mobility mode, security awareness etc.  The mMTC
+   type slices should be conscious of various requirements of scale,
+   data pattern, reliability, security and energy efficient
+   communications.
+
+
+
+Qin, et al.            Expires September 25, 2017               [Page 9]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+4.  NS Use Cases of Other (Over-The-Top services) type
+
+   Besides specific scenarios with special requirements, discussed in
+   previous section, examples in this section benefit from sliced-
+   network infrastructure.
+
+   Over-The-Top(OTT) services are typical scenario of this kind.  OTT
+   services are those associated with content, like video (with normal
+   definition), audio, IM messages, web-digital content, and other media
+   transmitted via the Internet, this kind of communications are
+   expected to be pervasive and part of everyday life.  A high degree of
+   applications such as VOIP, CDNs are deployed as OTT services with low
+   expectations from the underlying network as communication medium and
+   subsequently by building their own application infrastructure.  The
+   trend toward IP (or HTTP) based content delivery may be perceived as
+   an indicative of network as dumb pipe.  However, QoE is important to
+   content delivery and requires coordination with the ISPs.  With new
+   advances in multimedia formats and social network channels service
+   offerers must adapt to varying parameters of QoE.
+
+4.1.  Realizing OTT Service Slices
+
+   A network slice represented by partitioned network infrastructure
+   allocated for content delivery can help create new opportunities for
+   both network operators and content providers.  [RFC6770] provides
+   many use cases relating to ISP Handling of third-party content.
+   Following examples may be considered: - Content Service Providers
+   (CSPs) could lease a CDN slice and operate it as a well coordinated
+   CDN infrastructure of content awareness, optimally placed servers &
+   proprietary optimization logic functions (different for live video
+   (real-time) and on-demand (caching)).  - VOIP is a peer to peer
+   service and requires CBR across multiple domains.  If a VOIP-slice
+   specification is from a well-known template that is universally
+   understood then a low cost, reliable end-to-end VOIP service can be
+   offered without intense provisioning of the transport.
+
+5.  NS Use cases with Mixed Requirements
+
+   Along another dimension, many services will have combination of hard
+   resource constraints that were discussed in Section 3 such as both
+   eMBB and uRLL.  Some examples are as follows - As described in
+   Section 3.1.2, AV/VR has high bandwidth requirement but 'interactive'
+   VR/AR applications are extremely sensitive to delay and require very
+   low end-to-end latency (~20ms).  - While operating machinery
+   remotely, the primary communication characteristics are low latency
+   and low jitter but in case of video assisted maintenance, the
+   bandwidth also becomes important.  In fact, most of the applications
+   have mixed requirements from the network infrastructure.
+
+
+
+Qin, et al.            Expires September 25, 2017              [Page 10]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+6.  Generic Network Slicing Use Case Analysis
+
+   o  Network Operator View: It is a daunting task to manage ever
+      increasing number of services with their customized resource
+      requirements.  A logical division of networks shall allow simpler
+      orchestration, management and operation both for service operator
+      and network operators.
+
+   o  Opportunities in Industry verticals: With an independent control
+      of services and associated network resources, Industry verticals
+      can test and deploy services quicker.
+
+   o  5G context: While the scope of document does not limit to 5G, it
+      is important to take into consideration that 5G blurs the boundary
+      between fixed and mobile networks. some related factors are (1)
+      end-device access will be mainly radio or wireless but very well
+      be fixed (2) end-device is simultaneously associated with those
+      many access networks (3) transport could be IP or non-IP based. 5G
+      will also be early adopter of Network Slicing in its architecture,
+      therefore, many scenarios from 5G will be prioritized.
+
+   o  Heterogeneous resources: Different kind of resources maybe
+      required in difference slices.  Each network slice appears to its
+      users as an independent, dedicated private network which is
+      impervious to anything including the heterogeneous resources that
+      is happening on any of the other network slices, a high degree of
+      isolation on data plane is needed.
+
+   o  Transport Context: the transport network should give a customized
+      topology built for a different network slices, and provide the
+      network resources and performance characteristics like bandwidth,
+      latency, jitter, security, availability, and etc that required by
+      the corresponding slices.
+
+7.  Conclusion
+
+   Many emerging services, together with the existing and evolving
+   services will be carried out in the context of 5G network slicing.
+   The goal of 5G is to support various service scenarios which have
+   very diverse and strict demands from the network infrastructure.
+
+   These scenarios require networks to be more flexible and scalable to
+   support customized service requirements and diverse performance
+   requirements with a single network infrastructure.  Specifically, the
+   current transport network architecture is not as flexible or scalable
+   to provide the required network customizations and the resource
+   assurances for different type of use cases at simultaneously.
+
+
+
+
+Qin, et al.            Expires September 25, 2017              [Page 11]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+   Network slicing is a way to to support service or industry verticals
+   over the same physical network such that each network slice appears
+   to its tenant as an independent, dedicated private network and is
+   impervious to anything that is happening on any of the other network
+   slices.  For services which do not have special requirements from the
+   network; slicing provides an effective way for those to coexist along
+   with the services having strict requirements.
+
+8.  Security Considerations
+
+   The security considerations apply to each slice.  In addition general
+   security considerations of underlying infrastructure whether isolated
+   communication with in a slice apply for links using wireless
+   technologies.
+
+9.  IANA Considerations
+
+   There are no IANA actions requested at this time.
+
+10.  Acknowledgements
+
+   Thanks to Stewart Bryant for providing details for several use cases.
+
+11.  References
+
+11.1.  Normative References
+
+   [I-D.gdmb-netslices-intro-and-ps]
+              Galis, A., Dong, J., kiran.makhijani@huawei.com, k.,
+              Bryant, S., Boucadair, M., and P. Martinez-Julia, "Network
+              Slicing - Introductory Document and Revised Problem
+              Statement", draft-gdmb-netslices-intro-and-ps-02 (work in
+              progress), February 2017.
+
+   [RFC6770]  Bertrand, G., Ed., Stephan, E., Burbridge, T., Eardley,
+              P., Ma, K., and G. Watson, "Use Cases for Content Delivery
+              Network Interconnection", RFC 6770, DOI 10.17487/RFC6770,
+              November 2012, <http://www.rfc-editor.org/info/rfc6770>.
+
+   [RFC7665]  Halpern, J., Ed. and C. Pignataro, Ed., "Service Function
+              Chaining (SFC) Architecture", RFC 7665,
+              DOI 10.17487/RFC7665, October 2015,
+              <http://www.rfc-editor.org/info/rfc7665>.
+
+
+
+
+
+
+
+
+Qin, et al.            Expires September 25, 2017              [Page 12]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+11.2.  Informative References
+
+   [FG-IMT2020-Gaps]
+              "FG IMT-2020: Report on Standards Gap Analysis",
+              <http://www.itu.int/en/ITU-T/focusgroups/imt-2020>.
+
+   [ITS-I]    "Intelligent Transportation Systems and the IETF",
+              <https://www.ietfjournal.org/intelligent-transportation-
+              systems-and-the-ietf>.
+
+   [Network-Slicing-Concept]
+              Next Generation Mobile Network Alliance, "Description of
+              Network Slicing Concept", January 2016,
+              <https://www.ngmn.org/uploads/
+              media/160113_Network_Slicing_v1_0.pdf>.
+
+   [NGMN-White-Paper]
+              Next Generation Mobile Network Alliance, "5G White Paper",
+              March 2015, <https://www.ngmn.org/uploads/media/
+              NGMN_5G_White_Paper_V1_0.pdf>.
+
+   [Technology-Watch-Report]
+              ITU-T, "Technology Watch Report, The Tactile Internet",
+              August 2014, <http://ow.ly/Ubmow>.
+
+   [TR23.799]
+              International Telecommunications Union, "Study on
+              Architecture for Next Generation System", SA2 Study 3GPP-
+              TR23.799, December 2017,
+              <http://www.3gpp.org/ftp/Specs/archive/23_series/23.799/>.
+
+   [White-paper-5GAA]
+              5G Automotive Association, "The Case for Cellular V2X for
+              Safety and Cooperative Driving", November 2016,
+              <http://www.5gaa.org/
+              pdfs/5GAA-whitepaper-23-Nov-2016.pdf>.
+
+Authors' Addresses
+
+   Jun Qin
+   Huawei Technologies
+   Huawei Campus, No. 156 Beiqing Rd.
+   Beijing   100095
+
+   Email: qinjun4@huawei.com
+
+
+
+
+
+
+Qin, et al.            Expires September 25, 2017              [Page 13]
+
+Internet-Draft        Use cases for Network Slicing           March 2017
+
+
+   Kiran Makhijani
+   Huawei Technologies
+   2890 Central Expressway
+   Santa Clara  CA 95050
+
+   Email: kiran.makhijani@huawei.com
+
+
+   Jie Dong
+   Huawei Technologies
+   Huawei Campus, No. 156 Beiqing Rd.
+   Beijing   100095
+
+   Email: jie.dong@huawei.com
+
+
+   Li Qiang
+   Huawei Technologies
+   Huawei Campus, No. 156 Beiqing Rd.
+   Beijing   100095
+
+   Email: qiangli3@huawei.com
+
+
+   Shuping Peng
+   Huawei Technologies
+   Huawei Campus, No. 156 Beiqing Rd.
+   Beijing   100095
+
+   Email: pengshuping@huawei.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Qin, et al.            Expires September 25, 2017              [Page 14]
