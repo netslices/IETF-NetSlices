@@ -62,4 +62,8 @@ https://datatracker.ietf.org/doc/draft-lee-teas-actn-vn-yang/?include_text=1
     Presenter: Qiang Li - Huawei
     Duration: 10 mins + 5 mins Q&A
 
-11. Final Q&A & Conclusions: 30 mins
+11. Managing Slices – Dynamic Control Plane Datastores  
+    Presenter: Susan Hares - Huawei
+    Duration: 10 mins + 5 mins Q&A
+
+12. Final Q&A & Conclusions: 30 mins
