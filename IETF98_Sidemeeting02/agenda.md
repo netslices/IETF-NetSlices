@@ -68,6 +68,12 @@ Present and discuss use cases, architecture and identify technical problems to b
     Presenter: Qiang Li - Huawei
     Duration: 10 mins + 5 mins Q&A
     Abstract: Coming soon
+    
+### Presentation 11:  Managing Slices – Dynamic Control Plane Datastores  
+    Presenter: Susan Hares - Huawei
+    Duration: 10 mins + 5 mins Q&A
+    Abstract: One the important parts of network slides is network management of the slides.  The dynamic nature of the network slices may not align with traditional network management.  Traditional network management considers there is a box with a configuration file which aids the box to boot up and run.  Fitting the dynamic nature of network slides into this tradition box may seem like putting a round peg into a square hole.  Recently, the NETMOD, RESTCONF and the I2RS working groups have been working on a transformation of the traditional management system.   A “revised-datastore” model suggest that beside a “configuration” for the box with traditional rules, there can be dynamic datastores with configuration.  The rules on interaction between “datastores” are being developed.   Other routing groups (TEAS, I2RS, RTGWG) have made use of this new concept in their yang data models for topology discover.  My hope is this presentation will apprise those interested in NETSLICES on current IETF work that can be leveraged to accomplish your aids, and aid “gap analysis” needed for any charter development for a IETF BOF proposal.   
+ 
 
 ### Final Q&A & Conclusions: 30 mins
 
