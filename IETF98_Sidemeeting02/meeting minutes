@@ -1,0 +1,130 @@
+Network Slicing Side Meeting in IETF98
+2017.3.27  18:15-21:15, Vevey 1/2, Chicago
+
+Chairs: Stewart Bryant (Huawei), Alex Galis (UCL)
+
+Alex briefly introduces the purpose of the side meeting. 
+
+1.      Introduction and problem statement ,  Alex
+  Netslicing is not new, now move fast with 5G.
+  Key characteristics of network slicing
+  Network slicing work items at IETF
+Q&A: None
+
+
+2.      3GPP 5G network slicing use cases,  Xavier
+  Introduce the architecture of NS in 3GPP
+  Core network slicing
+  RAN slicing: early study indicates mainly by preconfigured
+Q&A:
+  Omar: In 3GPP, how many slices can be provided on the RAN side?
+  Speaker: Don’t know
+  Q: Does RAN selects core network slices? 
+  Speaker: No. RAN selects the functions of the core, CCNF chooses the core slice.
+  Q: Does CCNF provide mobility management function?
+  A: Yes.
+  John Strassner: Is there a model driven approach to orchestration? Data comes from different parts of the networks. From management or orchestration point of view, have you done modeling of the functions, for interoperability?
+  3GPP-IETF liaison person: Be aware that deadline of Phase 1 of 5G in 3GPP is June 2018. The results from IETF should go hand in hand with 3GPP. 
+  Q:  the title is use case, but content is more of architecture, would need more use cases to discuss.
+  A: there is another use case draft to be presented.
+  Hannu: From the presentation, what points are you pointing out for IETF to consider?
+  Speaker: No answer for this yet. 
+
+
+3.Network Slicing use cases,   Kiran
+  eMBB: large bandwidth, VR/AR ask for low latency
+  uRLLC: latency
+  mMTC: 
+  other type use case: 
+  ask for contribution of use case
+Q&A:
+  George: from 5G deployment point of view, it is also important to have vertical industry involved.
+
+
+4. ICN use-case,  Ravi
+Q&A:
+  Q: Is this pure ICN or over IP?
+  A: This is over IP.
+  Q: Is SFC used in this slicing use case? 
+  A: Not really. User asks for content from some cache. But SFC may not be involved.
+
+
+5. Network Slicing Architecture,  Liang Geng
+  Introduces reference architecture and key components of network slicing
+Q&A
+  Q: what is the formal definition of network slice?
+  A: combined resources of connectivity, network functions, computing, storage and some exposed provisioning. Another definition: Logical segment of networks. 
+  Q: slice can be small, medium and large. The current definition is too wide. Can we narrow down a little bit? 
+  A: Welcome input to the definition
+  Igor: can we define net slice as distributed data centers? 
+  A: Need to include DCI. 
+  Sue: For dynamic control and management, the recent work on revised datastore etc. in netmod/netconf may be relevant, also the topology and rib models in i2rs and teas, suggest to consider align with these works in next step.
+
+
+6. Network slicing, technique viewpoints and functional roles,  Pedro
+  Requirements: flexibility, plasticity, composability
+Q&A: none
+
+
+7. How to slice network, a slicing for IETF,  Hannu
+Q&A
+  Q: NFV works on slicing but haven’t seen how that works. How IETF interacts with NFV? Do not reinvent what NFV does. 
+  Q: How does dynamic slicing work? 
+  A: It is orchestration work
+  Jie: What does multi-cites mean? Is low latency slice just one of the use cases?
+  A: Multi-site means topology not only p2p, but with customized connectivity. Yes low latency is just one case of transport slice, can be slices with other requirement.
+  Q: there is a work being done on multi-domain orchestration and slicing (5GEX).
+
+
+8. Autonomous Transport network,  Qiang Li
+Q&A
+  Igor: identify one of the gap: the function to discover, negotiate and abstract the view of the topology, there is related work in teas wg (ACTN).
+
+
+9. ACTN and slicing,  Gert 
+  What is network slicing, and what is not?
+  Quote definition of network slicing in NFV 5G white paper
+  What slices are not: probably a broadcast mechanism
+Q&A: none
+
+
+10. FPSM in dmm,  Satoru
+  Enable separation of data and control plane functions of mobile network
+  Coordination between transport and mobile functions/services to form network slice 
+Q&A: none
+
+
+Open discussion: 
+1. Any of the topics relevant to IETF? A half in the room agree
+2. Who is willing to work on document? Or who is willing to help to scope the work in IETF? Many
+3. Should we build the charter for BoF at next IETF? Yes
+
+Dave Allan: Charter is good. Need to identify what is the scope, what is not in the scope of IETF. 
+
+Young: TEAS and ACTN is making progress on network slicing (and telemetry), need to identify gaps 
+
+Geroge: A charter is needed, and write down what is out of scope, and prioritize the work which is needed by other organizations.
+
+David Sinicrope: gap analysis should not only for IETF, but also understand what other people are doing with gap analysis, avoid overlapping with others, may liaison with ITU-T SG13.
+
+Stewart: Finding critical technical points within scope of IETF is important. 
+
+George: IETF needs to provide input to 3GPP
+
+??: The use cases can apply to non-5G and 5G, the scope of our work may not be limited by 3GPP 5G.
+
+5G and non-5G, which use-cases are included in the scope? 
+
+5G – high capacity access network but it takes network and cloud. 
+
+Peter Smith: Even without 5G, we still need an end-to-end network slicing mechanism. 
+
+Kiran: Need to identify what should to be standardized in IETF, the charter.
+
+??: Suggest to make the scope small so can match the pace of 5G requirement on slicing.
+
+Gert: Not sure we share a common view of network slice, would be good to clarify this.
+
+Dave Allan: Not sure IETF needs a unique definition of network slice. Suggest to use industry definition so that IETF can help the industry and find the unique value.   
+
+Gert: Maybe find another term for network slice in IETF.
