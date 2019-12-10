@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!--
+
+
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" []>
+<?rfc toc="yes"?>
+<?rfc tocompact="yes"?>
+<?rfc tocdepth="3"?>
+<?rfc tocindent="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc comments="yes"?>
+<?rfc inline="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+-->
+
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [ 
+<!-- One method to get references from the online citation libraries. 
+     There has to be one entity for each item to be referenced.  
+     An alternate method (rfc include) is described in the references. --> 
+<!--
+<!ENTITY RFC7348 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7348.xml">
+<!ENTITY RFC7665 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7665.xml"> 
+<!ENTITY RFC8300 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8300.xml">
+<!ENTITY I-D.draft-ietf-sfc-hierarchical SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-sfc-hierarchical-05.xml">
+<!ENTITY I-D.draft-netslices-usecases SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-netslices-usecases-02.xml"> 
+-->
+<!--
+<!ENTITY I-D.draft-qiang-coms-architecture SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-qiang-coms-architecture-00.xml">
+-->
+<!--
+<!ENTITY I-D.draft-qiang-coms-netslicing-information-model SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-qiang-coms-netslicing-information-model-01.xml">
+<!ENTITY I-D.draft-defoy-coms-subnet-interconnection SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-defoy-coms-subnet-interconnection-01.xml"> 
+<!ENTITY I-D.draft-qiang-coms-netslicing-information-model SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-qiang-coms-netslicing-information-model-01.xml">
+<!ENTITY I-D.draft-ietf-spring-segment-routing-mpls SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-spring-segment-routing-mpls-11.xml">
+<!ENTITY I-D.draft-ietf-6man-segment-routing-header SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.draft-ietf-6man-segment-routing-header-08.xml">
+-->
+
+]> 
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?> 
+<!-- used by XSLT processors --> 
+<!-- For a complete list and description of processing instructions (PIs),  
+      please see http://xml.resource.org/authoring/README.html. --> 
+<!-- Below are generally applicable Processing Instructions (PIs) that most I-Ds might want to use. 
+     (Here they are set differently than their defaults in xml2rfc v1.32) --> 
+<?rfc strict="yes" ?> 
+<!-- give errors regarding ID-nits and DTD validation --> 
+<!-- control the table of contents (ToC) --> 
+<?rfc toc="yes"?> 
+<!-- generate a ToC --> 
+<?rfc tocdepth="4"?> 
+<!-- the number of levels of subsections in ToC. default: 3 --> 
+<!-- control references --> 
+<?rfc symrefs="yes"?> 
+<!-- use symbolic references tags, i.e, [RFC2119] instead of [1] --> 
+<?rfc sortrefs="yes" ?> 
+<!-- sort the reference entries alphabetically --> 
+<!-- control vertical white space  
+     (using these PIs as follows is recommended by the RFC Editor) --> 
+<?rfc compact="yes" ?> 
+<!-- do not start each main section on a new page --> 
+<?rfc subcompact="no" ?> 
+<!-- keep one blank line between list items --> 
+<!-- end of list of popular I-D processing instructions --> 
+<rfc category="info" docName="draft-nsdt-teas-transport-slice-definition-01">
+  <!-- ***** FRONT MATTER ***** --> 
+
+
+
+
+  <front>
+    <title abbrev="draft-nsdt-teas-transport-slice-definition">
+    IETF Definition of Transport Slice
+    </title>
+
+    <author fullname="Reza Rokui" initials="R." surname="Rokui">
+      <organization>Nokia</organization>
+
+      <address>
+        <postal>
+          <street/>
+          <city/>
+          <region/>
+          <code/>
+          <country>Canada</country>
+        </postal>
+        <email>reza.rokui@nokia.com</email>
+      </address>
+    </author>
+
+    <author fullname="Shunsuke Homma" initials="S." surname="Homma">
+      <organization abbrev="NTT">NTT</organization>
+
+      <address>
+        <postal>
+          <street/>
+          <city/>
+          <region/>
+          <code/>
+          <country>Japan</country>
+        </postal>
+        <email>shunsuke.homma.fp@hco.ntt.co.jp</email>
+      </address>
+    </author>
+    
+
+    
+    <author fullname="Kiran Makhijani" initials="K." surname="Makhijani">
+      <organization abbrev="Futurewei">Futurewei</organization>
+      
+      <address>
+        <postal>
+          <street/>
+          <city/>
+          <country>USA</country>
+        </postal>
+        <email>kiranm@futurewei.com</email>
+      </address>
+    </author>
+
+    <date/>
+
+    <area>rtg</area>
+
+    <workgroup>teas</workgroup>
+    
+    <keyword>Internet-Draft</keyword>
+
+    <abstract>
+      <t>
+      This document describes the definition of transport slice in IETF, and describes considerations for realization
+      of transport slice. This work is part of work on TEAS WG network slicing Design Team.
+      </t>
+    </abstract>
+  </front>
+
+  <middle>
+    <section title="Introduction">
+		<t>
+      Network slicing is a methodology to generically describe the logical partitioning 
+      of network resources  associated with a service or an application. Network Slicing is considered very useful because there is a need to generically describe 
+      diverse set of services and related resource requirements that can then be applied to
+      any number or type of proposed, implemented and/or deployed technologies and associated
+      devices. Some key applications which might benefit from the use of network slicing include:
+        <list style="symbols">
+          <t>5G services (e.g. eMBB, URLLC, mMTC)(See <xref target="TS.23.501-3GPP"/>)</t>
+          <t>Wholesale business VPN</t>
+          <t>Network infrastructure sharing among the operators</t><t>NFV connectivity (Data Center Interconnect)</t>
+        </list>
+      <!-- KM: I am confused here. Do you want to say this for network transport slice or network slice in general?-->
+      A network slice is composed of different endpoints and application specific connectivity between them. Transport network slices are a type of network slices that are created and managed with in the scope of transport networks (IP, MPLS, GMPLS). There is no concrete definition for network transport slices established or method to realize them.
+      </t>
+      <t>
+      This document provides a definition of 'transport slice' in IETF, and describes considerations for realization of transport slices. In this document the term transport slice is used as short form for transport network slice.
+      </t>
+    </section>
+
+    <section title="Terms and Abbreviations">
+     <t>Service Level Objective (SLO): </t>
+     <t>NS ID</t>
+     <t>mMTC</t>
+     <t>URLLC</t>
+
+    </section>
+
+    <section title="High level architecture of end-to-end network slicing">
+      <t>
+        An end-2-end (E2E) network slice is a complete network slice that provides a service in its entireity with a specific assurance to the customer. A transport slice concerns those assurance aspects only with in the transport networks.
+
+    To illustrate the IETF definitions of both E2E network slice and transport slice, consider the network shown in <xref target="fig_E2E-NS"/>, where a network operator has an E2E network slice that traverses multiple technology-specific networks. Each of these networks might use any of a number of technologies, including IP, MPLS, Fiber-Optics (e.g. WDM, DWDM), Passive Optical Networking (PON), Microwave, etc.
+      </t>
+      <t>
+    Each of these networks includes multiple (physical or virtual) nodes and may also provide network functions beyond simply carrying of technology-specific protocol data units. The types of nodes used in any of these networks may include:
+      <list style="symbols">
+        <t>Packet Switches (e.g. Routers, Bridges)</t>
+        <t>Application servers</t>
+        <t>Firewalls</t>
+        <t>Radio Access Network (RAN) components</t>
+        <t>Mobile Core componets</t>
+        <t>Microwave transceivers</t>
+        <t>Optical repeaters</t>
+        <t>etc.</t></list>
+      </t>
+      <t>
+    Each network may support different technology and an E2E netowrk slice is a combination of these networks. As an example:
+      <list style="symbols">
+        <t>Network 1 might contain multiple 5G RAN nodes connected to a few Cell Site Gateways (CSG) routers. </t>
+        <t>Network 2 might have one or more layer-3 routers and layer-2 switches which may run on top on optical network.</t>
+        <t>Network 3 might have a few 5G RAN nodes connecting to Passive Optical Network (PON) switches.</t>
+        </list>
+      </t>
+      <figure anchor="fig_E2E-NS" title="E2E network slice">
+        <artwork align="center"><![CDATA[
+  
+        <======================= E2E NS ===================>
+
+        <!--KM: should this be not only TS1?-->
+        <-OS1-> <-TS1-> <-TS2-> <-OS2->  ... <-TSn-> <-OSm->
+    
+       |------------------------------------------------------| 
+       |    .--.             .--.                .--.         |
+       |   (    )--.        (    )--.           (    )--.     |
+       |   .'         '     .'         '        .'        '   |
+[EU-x] |  (  Network-1  )  (  Network-2  ) ... (  Network-p ) |[EU-y]
+       |  `-----------'    `-----------'       `----------'   |
+       |                                                      |
+       |                      Operator-z                      |
+       |------------------------------------------------------|
+Legend:
+  E2E NS: End-to-end network slice
+  TSn: Transport Slice n
+  OSm: Other Slice m
+  EU-x: End User-x
+  EU-y: End User-y
+    
+  ]]></artwork>
+      </figure>
+      <t>
+
+    To further clarify the concept of the E2E network slice, consider the network operator-z has various 
+    customers. One of the customers, needs a separate and an independent E2E logical network 
+    for a service (e.g. CCTV, autonomous driving, HD map etc.) and has a specific network SLA requirement (e.g. a secure connection with an E2E latency less than 5ms) from End User-x (EU-x) to End User-y (EU-y) to the other side. This E2E logical network is called an "E2E network slice".  A typical example of EU-x in 5G is the User equipment such as infotainment unit in the car, CCTV, Car for autonomous driving etc. and a typical example of EU-y in 5G is 5G application server, IMS etc.
+      </t>
+      <t>
+    In <xref target="fig_E2E-NS"/> we use the term "E2E network slice" to show the logical 
+    network with requested SLA from EU-x to EU-y. It is important to consider that an "E2E network slice" is 
+    associated with a customer and a service type (e.g. CCTV service, autonomous driving etc.).
+      </t>
+      <t>
+        <!--KM: I think entire city is too large, you can say an area or zone -->
+    For example, a customer "City of NY" would like to connect all its CCTV cameras for the entire city to one or more locations for viewing or collection. To this end, it requests local carrier - 'operator-z' in NY to create a new E2E network slice with a bandwidth no-less-than 10Mbps from each CCTV coverage area. In this case, a single E2E network slice will be created by the operator-z for customer "City of NY", service type of CCTV and requested bandwidth connecting all the CCTV camera zones to one or more control-centers for the collection of video data.
+      </t>
+      <t>
+    It may also be possible that more than one customer and/or service types are associated with an E2E network slice.
+        <!-- KM: some issues here. This example seems not very accurate
+        I can see what you want to say but CCTV as a service is just video streaming service, it can be used by
+        NYPD or traffic police for public safety and traffic violation - 2 different services
+          I suggest to comment this line below for now. Later we should talk about service types - then add more.
+        -->
+    For instance, an E2E network slice is associated with not only to service type CCTV 
+    but another service "Public Safety", i.e. NS ID 10 is used for two services for City of NY.
+      </t>
+    </section>
+
+
+    <section title="IETF Definition and Scope of Transport slice">
+      <section title="Defintion">
+      <t>
+    The IETF definition of a transport slice is as follows:
+      </t>
+      <t>
+        A transport network slice is an abstract network topology connecting a number of endpoints, with an expected network service specified through a set of service level objectives.
+      </t>
+      <t>
+    Note that multiple transport slices can be combined together into one transport slice, in that case each segment will be called transport subslice or transport subnet slice. The document will consistently use the term transport subslice. Use of service level objectives help to clearly describe different network resources and corresponding parameters neccessary to describe a service.
+      </t>
+      <t>
+    Informally, a transport slice has a set of connections and various endpoints to form a logical network. The goal is to achieve specific SLO for a customer as shown in  <xref target="fig_Transport-NS"/>. The endpoints maybe any physical or virtual network functions (PNF/VNF) or any network service for that matter. Simillarly connections maybe virtual or physicals links of any type of technology.  
+      </t>
+      <figure anchor="fig_Transport-NS" title="Transport slice">
+        <artwork align="center"><![CDATA[
+  
+      <-------  Transport slice -------->
+
+          .--.               .--.        
+[EP11]   (    )- .          (    )- .    [EP21]
+        .'         '       .'         '  
+[EP12] (  Network-1 ) ... (  Network-p ) [EP22]   
+ :     `-----------'      `-----------'    :
+[EP1m]                                   [EP2n]
+
+Legend
+  EP: Endpoint 
+
+  ]]></artwork>
+      </figure>
+      <t>
+      Referring to <xref target="fig_E2E-NS"/>, when operator-z creates a specific E2E network slice, it should create 
+      one or more of the following two types of artefacts:
+      <list style="symbols">
+        <t>Transport slice (or transport sub-slices)</t>
+        <t>Other slice (application logic or other non-IETF slice components)</t>
+        </list>
+	  </t>
+      <t>
+     As shown in <xref target="fig_E2E-NS"/>, an E2E network slice might have one or more of "Transport Slices" 
+     and one or more of other slices of any combinations. One of the critical parts of an E2E network slice is 
+     "Transport Slices" which provides various connections with certain SLA between various endpoints. 
+      </t>
+      <t>
+     Defining the other slices is out-of-scope of current work.
+      </t>
+      <t><xref target="fig_Transport-NS"/> illustrates the definition of a Transport Slice where a single transport 
+      slice provides connectivity between "m" endpoints on left-hand side to "n" endpoints on right-hand side with specific 
+      characteristic for Service Level Agreement (SLA). 
+      </t>
+      <t>
+      Each transport slice has the following main characteristics:
+		  <list style="symbols">
+			  <t>Transport slice definition: It addresses a set of technology-agnostic connections between 
+				  various endpoints with certain SLA </t>
+			  <t> Transport slice realization: In addition to its definition, a Transport Slice has a realization in 
+				  the operator's network. Unlike transport slice definition, which is technology agnostics, its realization 
+				  is technology specific.  </t>
+		  </list>
+      </t>
+        </section>
+      <section title="Transport Slice Characteristics">
+           <t> TODO </t>
+        <section title="Service Level Objectives">
+           <t> TODO </t>
+        </section>
+        <section title="Endpoints"> 
+           <t> TODO </t>
+        </section>
+		<section title="wSlice Isolation">
+           <t> TODO </t>
+        </section>
+      </section>
+      </section>
+
+      <section title="Transport Slice Examples">
+      <section title="Scenario-1">
+        <t><xref target="fig_5G-Transport-NS"/> depicts an example of transport slice connecting two 5G RAN nodes (gNB) to three 5G Core user plan function nodes (UPF). 
+      In this case a transport slice 20 is created with SLA including 10 [msec], or better, latency between 5G endpoints gNBs and UPFs.
+        </t>
+        <figure anchor="fig_5G-Transport-NS" title="Example of Transport Slice 20 connecting gNBs to 5G Core UPF">
+          <artwork align="center"><![CDATA[
+  
+      <--- Transport slice(TS ID:20) --->
+           with SLA of latency, less 
+           than 10[msec]
+
+                 .----.                [UPF1]
+ [gNB1]         (      )----.          
+           .---'             '----.    [UPF2] 
+ [gNB2]   (          Network       )     
+          `-----------------------'    [UPF3]
+
+  ]]></artwork>
+        </figure>
+      </section>
+      <section title="Scenario-2">
+        <t><xref target="fig_FW-Transport-NS"/> depicts another example where transport slice 30 is created to 
+      connect router ER1 to two firewall endpoints with SLA including 10 [Mbps], or higher, bandwidth.
+        </t>
+        <figure anchor="fig_FW-Transport-NS" title="Example of Transport Slice connecting Router to two firewalls">
+          <artwork align="center"><![CDATA[
+  
+    <--- Transport slice(TS ID:30) --->
+           with SLA B/W 5Mbps
+
+                 .----.         
+                (      )----.          
+           .---'             '----.    [FW1] 
+[ER1]     (          Network       )     
+          `-----------------------'    [FW2]
+
+Legends
+  ER: Edge Router
+  FW: Firewall
+
+  ]]></artwork>
+        </figure>
+      </section>
+      <section title="Scenario-3">
+        <t>
+      Another example of transport slice is SFC case as shown in <xref target="fig_SFC-Transport-NS-1"/> and 
+      <xref target="fig_SFC-Transport-NS-2"/> which depict an example with SF1 and SF2 (e.g. DPI, Firewall, 
+      WAF, video optimizer, content cache server, NAT/CGN, Load balancer) and the transport slice between 
+      ER1 and ER2 traverses these SFs. There are two approaches:
+      <list style="symbols"><t>
+        Approach-1 shown in <xref target="fig_SFC-Transport-NS-1"/> where Transport slice 40 chains router ER1, SF1, SF2, and router ER2. 
+        Transport slice 40 needs lower than 30 ms delay. However, endpoints SF1 and SF2 are implicitly identified during the transport slice realization. In this case, a single transport slice is created between ER1 and ER2.
+            </t><t>
+        Approach-2 shown in <xref target="fig_SFC-Transport-NS-2"/>  where the transport slice 40 can be broken into transport slices 
+        41, 42, 43. In this case SF1 and SF2 are explicityly identified and as a results three transport slices between following endpoints will be realized:
+		<list style="symbols">
+			<t>Between endpoints ER1 and SF1 </t>
+			<t> Between endpoints SF1 and SF2 </t>
+			<t> Between endpoints SF2 and ER2 </t>
+		</list>
+   </t>
+</list>
+        </t>
+        <figure anchor="fig_SFC-Transport-NS-1" title="Approach-1: Example of Transport Slice connecting Edge Routers ER1 and ER2 with SFC">
+          <artwork align="center"><![CDATA[
+
+     <--- Transport slice(TS ID:40) --->
+           with SLA of latency 30ms
+
+          +-----+
+          | SF1 |
+          + *** +     .----.         
+            * *      (      )--.  
+            * *     (           )
+            * *  --' Network    '--.       
+[ER1]******** *********** *************[ER2]   
+          `-------------*-*--------'   
+                        * *
+                      + *** + 
+                      | SF2 |
+                      +-----+
+
+  ]]></artwork>
+        </figure>
+        <figure anchor="fig_SFC-Transport-NS-2" title="Approach-2: Example of Transport Slice connecting Edge Routers ER1 and ER2 with SFC">
+          <artwork align="center"><![CDATA[
+
+    <-- Transport slice (TS ID:40) -->
+          with SLA latency 30ms
+    <- TS41 -> <- TS42 ->  <- TS43 -->
+       SLA        SLA         SLA   
+       5[ms]      20[ms]      5[ms]
+
+          +-----+
+          | SF1 |
+          + *** +     .----.         
+            * *      (      )--.  
+            * *     (           )
+            * *  --' Network    '--.       
+[ER1]******** *********** *************[ER2]   
+          `-------------*-*--------'   
+                        * *
+                      + *** + 
+                      | SF2 |
+                      +-----+
+
+  ]]></artwork>
+        </figure>
+      </section>
+    </section>
+    
+    <section title="Realization of Transport slice">
+      <t>
+      In addition to its definition, a Transport Slice has another characteristic which is its realization in the operator's network as shown in <xref target="fig_Implementation_TS"/>. The creaton of a new Transport Slice will be initiated from a northbound interface whereby a higher level system can request connections with specific characteristics (Step 1). This request will be processed by a Transport Slice Controller (Step 2) which specifies a mapping between northbound request to any IETF Services, Tunnels and paths. A series of requests for creaton of services, tunnels and paths will be sent to the network to realize the trasport slice.  
+      </t>
+      <figure anchor="fig_Implementation_TS" title="Transport Slice Realization">
+        <artwork align="center"><![CDATA[
+
+    |------------------------------------------|
+    |         A highter level system           |
+    |   (e.g e2e network slice orchestrator)   |
+    |------------------------------------------|
+                          | (Step 1)
+                          |
+                          V
+    |------------------------------------------|
+    |         Transport Slice Controller       |(Step 2)
+    |------------------------------------------|
+                          | (Step 3)
+                          |
+                          V
+
+Step 1: 
+ The higher level system (e.g. e2e network slice orchestrator) 
+ can request a transport slice with specific characteristics
+
+Step 2:
+ The transport slice controller maps the northboud request to 
+ any IETF Services/Tunnels/Paths models
+
+Step 3: 
+ Realize the transport slice by creating Services/Tunnels/Paths 
+
+  ]]></artwork>
+      </figure>
+      <section title="Realization of Scenario-1">
+        <t><xref target="fig_Imple-5G-Transport-NS"/> depicts the realization of the transport slice 20 of <xref target="fig_5G-Transport-NS"/>. Operator's transport slice controller invoke an abstract API to create a transport slice between 5G endpoints gNB1 and gNB2 to 5G Core endpoints UPF1, UPF2 and UPF3 with SLA inlcuding 10 [ms] latency. 
+        </t>
+        <t>
+      Since in most cases the passed in endpoints (i.e. 5G RAN and 5G Core endpoints) cannot support any IP/MPLS/Optics services, the endpoints to realize the transport slice 20 will not be the endpoints passed in. This is one of the most important aspects to consider when realizing the transport slices.  
+        </t>
+        <t>
+      As shown in <xref target="fig_Imple-5G-Transport-NS"/>, the realization of transport slice 20 required the transport slice 
+      controller to find out the "best" endpoints which support the realization of transport slice 20 in the
+      network, i.e. endpoints ER1, ER2 and ER3. After that, the realization of the transport slice 
+      20 will be initiated by creation of various services/tunnels/paths between edge routers ER1,
+      ER2 and ER3. The type of Services/Tunnels/Paths depends on the supported technologies of endpoints ER1, ER2 and ER3.
+        </t>
+        <t>
+      In this scenario, the end points of transport slice realization are not those endpoints passed in, i.e. 
+      <list style="symbols"><t>Definition of transport slice is between gNB1 and gNB2 to UPF1, UPF2, and UPF3</t><t>Realization of transport slice is between edge routers ER1, ER2 and ER3</t></list>
+        </t>
+        <figure anchor="fig_Imple-5G-Transport-NS" title="Realization of Transport slice 20 of Figure 3">
+          <artwork align="center"><![CDATA[
+  
+                    | Create Transport slice 20 between gNB1 & gNB2
+                    | to UPF1 & UPF2 & UPF3  with SLA  latency 
+                    | 10 ms or better
+                    v
+   +----------------------------------+
+   |    Transport Slice Controller    |
+   +----------------------------------+
+                    | Realize transport slice 20 between
+                    | ER1, ER2 and ER3 with SLA latency of
+                    | 10 ms or better
+                    v                          +----+
+                  .----.                       +UPF1|
+[gNB1] +----+    (      )---.                 /+--=-+
+     \ |    |===========================[ER2]+     
+      \| ER1|  (      Network       )          +----+
+      /|    |===========================[ER3]+-|UPF2|
+     / +----+    `----------------'         +  +----+
+[gNB2]                                       \
+                                              \+----+
+                                               +UPF3|
+                                               +----+
+Legends
+  === : Tunnels & Services 
+  ER: Edge Router
+
+  ]]></artwork>
+        </figure>
+      </section>
+      <section title="Realization of Scenario-2">
+        <t><xref target="fig_Imple-Transport-NS"/> depicts the realization of transport 
+      slice 30 of <xref target="fig_FW-Transport-NS"/>. Operator's Transport Slice Controller receives a request to create a 
+      transport slice between network functions R1 and firewalls FW1 and FW2 with SLA including 5 [Mbps]. 
+      Depends on the underlying network topology, Operator's transport slice controller will realize the transport slice. For example, if both network functions (i.e. R1, FW1, FW2) 
+      and network supports segment routing, two Tunnels/Services of type SR can be created (or used) in the 
+      network between R1, FW1 and FW2 to realise the transport slice 30. However, if the network just supports
+      RSVP, two tunnels/services of type RSVP can be used to realize this transport slice. 
+        </t>
+        <t>
+      Note that since the network functions ER1, FW1 and FW2 support segment routing, the endpoints of 
+      the tunnels in this example are those endpointss passed in, i.e. the endpoints of the both transport slice definiton and its realization are R1, FW1 and FW2:
+      <list style="symbols"><t>Definition of transport slice is between network functions R1 to FW1 and FW2</t><t>Realization of transport slice is between network functions R1 to FW1 and FW2</t></list>
+        </t>
+        <t>
+      We will see in next example that in some scenarios this is not the case and the endpoints of 
+      Transport Slice definition might be different from endpoints of its realization of transport slices. 
+        </t>
+        <t>
+      It is very clear that regardless of how transport slice is realized in the network (i.e. using tunnels 
+      of type RSVP or SR), the definition of transport slice 30 does not change at all but rather its realization. 
+        </t>
+        <figure anchor="fig_Imple-Transport-NS" title="Realization of Transport slice 30 of Figure 4">
+          <artwork align="center"><![CDATA[
+  
+                    | Create Transport slice 30 between 
+                    | ER1 and FW1 and FW2 with SLA 5 Mbps
+                    v
+   +----------------------------------+
+   |    Transport Slice Controller    |
+   +----------------------------------+
+                    | Realize transport slice 30
+                    | between R1 and FW1 & FW2
+                    | with SLA 5 Mbps
+                    v
+                  .----.         
++----+      .----(      )----.        
+|    |=============================[FW1]     
+| ER |    (      Network       )     
+|    |=============================[FW2]
++----+      `----------------'
+
+Legends
+  === : Tunnels & Services of type SR
+        or RSVP with SLA 5 Mbps
+
+  ]]></artwork>
+        </figure>
+      </section>
+      <section title="Realization of Scenario-3">
+        <t><xref target="fig_Imple-SFC-Transport-NS-1"/> depicts the realization of the transport slice 40 of 
+      <xref target="fig_SFC-Transport-NS-1"/> where a transport slice needed between network functions R1 and R2 across SF1 
+      and SF2. However, the location of SF1 and SF2 are decided internally with a logic in Transport Slice Controller. For example, when SLA requires the high secure transport slice between ER1 and ER2 which in turn results on adding SF1 and SF2 to the realization of transport slice 40 implicitly by transport slice controller.
+        </t>
+        <t><xref target="fig_Imple-SFC-Transport-NS-2"/> shows the realization of the transport slice 40 of 
+      <xref target="fig_SFC-Transport-NS-2"/>. In this case the location of SF1 and SF2 has been explicitly decided by higher 
+      level logic. In this case three transport slices 41, 42 and 43 will be created separately and eventually bind 
+      together to form a single transport slice 40 to meet the SLA that delay is lower than 30 ms.
+        </t>
+        <figure anchor="fig_Imple-SFC-Transport-NS-1" title="Realization of Transport slice 40 of Figure 5">
+          <artwork align="center"><![CDATA[
+
+                         | Create transport slice between ER1          
+                         | and ER2 with latency 30 [msec]                                      
+                         v                               
+                +------------------+              +-----------+
+                | Transport slice  |<------------>|    SF     |  
+                |   controller     |              |  Manager  |
+                +------------------+              +-----------+
+                         | Realize transport slice 40 between      
+                         | ER1 & ER2 traversing SF1 and SF2  
+                         | with SLA of latency 30 [msec]  
+                         V
+    <----------------- TS 40 ------------------->                        
+            +-----+      
+            | SF1 |      
+            + === +   .----.         
+              # #    (      )--.  
+              # #  (           )
+              # #  --' Network    '--.       
+[ER1]=========   =========  ===================[ER2]   
+          `-------------- # # --------'   
+                          # #
+                        + == + 
+                        | SF2 |
+                        +-----+
+
+Legends
+  ===== : Tunnels & Services 
+
+  ]]></artwork>
+        </figure>
+        <figure anchor="fig_Imple-SFC-Transport-NS-2" title="Realization of Transport slice 40 of Figure 6">
+          <artwork align="center"><![CDATA[
+
+                      | Requirements on communication
+                      | between ER1 and ER2
+                      v
+          +---------------------+            +-----------+
+          |  High level system  | <--------> | SF Manager|
+          +---------------------+            +-----------+
+                      | Create transport slice between ER1 and SF1,
+                      |        with latency 5 [msec]
+                      | Create transport slice between SF1 and SF2,
+                      |        with latency 20 [msec]
+                      | Create transport slice between SF2 and ER2,
+                      |        with latency 5 [msec]
+                      v
+            +-------------------+
+            |  Transport slice  |
+            |     controller    |
+            +-------------------+
+               |      |     |         Realize TS 41 between ER, SF1
+               |      |     |                 with latency 5 msec
+        +------+      |     +-------+ Realize TS 42 between SF1, SF2
+        |             |             |         with latency  20 msec
+        |             |             | Realize TS 43 between SF2, ER2
+        |             |             |         with latency 5 msec
+        v             v             v 
+   <--TS 41-->   <--TS 42-->   <--TS 43 -->
+  <---------------- TS 40 ---------------->
+            +-----+
+          #=| SF1 |
+          # +-----+ .----.
+          #     #  (      )--.
+          # .---#' Network    '--.
+[ER1]=====#(    #==========#       )#=====[ER2]
+            `--------------#------' #
+                           #        #
+                         +-----+    #
+                         | SF2 |====#
+                         +-----+
+
+Legend
+=== : Tunnels & Services 
+
+  ]]></artwork>
+        </figure>
+      </section>
+    </section>
+
+  </middle>
+
+  <!-- ***** BACK MATTER ***** -->
+
+  <back>
+    <references title="Informative References">
+<!--
+      <?rfc include="reference.RFC.7665"?>
+      
+      <?rfc include="reference.RFC.8300"?>>
+      
+      <?i-d include="reference.I-D.netslices-usecases"?>
+      
+      <?i-d include="reference.I-D.defoy-coms-subnet-interconnection"?>
+      
+      <?i-d include="reference.I-D.qiang-coms-netslicing-information-model"?>>
+
+    &RFC7348;
+    &RFC7665;
+    &RFC8300;
+    &I-D.draft-netslices-usecases;
+    &I-D.draft-qiang-coms-netslicing-information-model;
+    &I-D.draft-qiang-coms-architecture;
+    &I-D.draft-ietf-spring-segment-routing-mpls;
+    &I-D.draft-ietf-6man-segment-routing-header;
+    &I-D.draft-ietf-sfc-hierarchical;
+    &I-D.draft-defoy-coms-subnet-interconnection;
+-->  
+ <!--     
+      <reference anchor='NFV-Architectural-Framework'
+       target='http://www.etsi.org/deliver/etsi_gs/NFV/001_099/002/01.02.01_60/gs_NFV002v010201p.pdf'>
+        <front>
+        <title>Network Functions Virtualisation (NFV); Architectural Framework</title>
+        <author>
+        <organization>
+        Network Functions Virtualisation (NFV) ETSI Industry Specification Group (ISG)
+        </organization>
+        </author>
+        <date month="December" year="2014"/>
+        </front>
+      </reference>
+      
+      <reference anchor='OSM-White-Paper'
+       target='https://osm.etsi.org/images/OSM-Whitepaper-TechContent-ReleaseONE-FINAL.pdf'>
+        <front>
+        <title>OSM White Paper</title>
+        <author>
+        <organization>ETSI</organization>
+        </author>
+        <date month="October" year="2016"/>
+        </front>
+      </reference>
+      
+      <reference anchor='TS.36.300-3GPP'
+       target='http://www.qtc.jp/3GPP/Specs/36300-830.pdf'>
+        <front>
+        <title>3GPP TS 36.300</title>
+        <author>
+        <organization>
+        3rd Generation Partnership Project (3GPP)
+        </organization>
+        </author>
+        <date month="December" year="2007"/>
+        </front>
+      </reference>
+
+      <reference anchor='Slicing_Tutrial'
+       target='http://netsoft2018.ieee-netsoft.org/program/tutorials/; http://discovery.ucl.ac.uk/10051374/'>
+        <front>
+        <title>Network Slicing Landscape- Tutorial</title>
+        <author>
+        <organization>
+        IEEE NetSoft2018
+        </organization>
+        </author>
+        <date month="June" year="2018"/>
+        </front>
+      </reference>
+
+      <reference anchor='NECOS'
+       target='hhttp://www.h2020-necos.eu'>
+        <front>
+        <title>Novel Enablers for Cloud Slicing</title>
+        <author>
+        <organization>
+        NECOS
+        </organization>
+        </author>
+        <date/>
+        </front>
+      </reference>
+-->
+      <reference anchor='TS.23.501-3GPP'  target="http://www.3gpp.org/ftp//Specs/archive/23_series/23.501/23501-g20.zip">
+        <front>
+        <title>3GPP TS 23.501 (V16.2.0): System Architecture for the 5G System (5GS); Stage 2 (Release 16)
+        </title>
+        <author>
+        <organization>
+        3rd Generation Partnership Project (3GPP)
+        </organization>
+        </author>
+        <date month="September" year="2019"/>
+        </front>
+      </reference>
+
+    </references>
+
+  
+  </back>
+</rfc>
